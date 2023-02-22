@@ -1,0 +1,2 @@
+# iced-testing
+Made to figure out how the [iced](https://www.github.com/iced-rs/iced) toolkit and rust work, uses my other rust thing [(ascii-crypt)](https://www.github.com/panda3045/ascii-crypt). Should be fairly self-explanatory
