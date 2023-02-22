@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 iced = "0.8.0"
-ascii_crypt = { path = "../ascii_crypt" }
+ascii_crypt = { git = "https://github.com/panda3045/ascii-crypt.git" }

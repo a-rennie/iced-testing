@@ -74,6 +74,7 @@ checksum = "8da52d66c7071e2e3fa2a1e5c6d088fec47b593032b254f5e980de8ea54454d6"
 [[package]]
 name = "ascii_crypt"
 version = "0.1.0"
+source = "git+https://github.com/panda3045/ascii-crypt.git#302d94f42d5752944cfc8023d251847b6537149a"
 
 [[package]]
 name = "ash"
