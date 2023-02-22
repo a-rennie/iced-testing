@@ -12,9 +12,21 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ ubuntu-latest, windows-latest, macOS-latest ]
+        include:
+          - os: macOS-latest
+            filename: mac
+          - os: windows-latest
+            filename: windows.exe
+          - os: ubuntu-latest
+            filename: linux
 
     steps:
       - uses: actions/checkout@v3
       - name: Build
         run: cargo build --verbose --release
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          name: ${{ matrix.filename }}
+          path: /target/release/iced_*
+          # A file, directory or wildcard pattern that describes what to upload
