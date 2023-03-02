@@ -5,7 +5,7 @@ use iced::{alignment, window, Alignment, Color, Element, Length, Sandbox, Settin
 pub fn main() -> iced::Result {
     let settings = Settings {
         window: window::Settings {
-            size: (500, 500),
+            size: (750, 750),
             resizable: true,
             decorations: true,
             ..Default::default()
@@ -19,6 +19,7 @@ pub fn main() -> iced::Result {
 struct Crypt {
     value: String,
     error: String,
+    crab: bool,
 }
 
 #[derive(Debug, Clone)]
@@ -36,6 +37,7 @@ impl Sandbox for Crypt {
         Self {
             value: String::new(),
             error: String::new(),
+            crab: false
         }
     }
 
@@ -64,7 +66,7 @@ impl Sandbox for Crypt {
                 };
             }
             Message::InputChanged(str) => self.value = str,
-            Message::Crab => self.error = String::from("Crab")
+            Message::Crab => self.crab = !self.crab
         }
     }
 
@@ -84,6 +86,19 @@ impl Sandbox for Crypt {
                     .on_press(Message::Crab),
             ],
             text(&self.error).style(Color::from([1.0, 0.0, 0.0])),
+            if self.crab {
+                image("cuddlyferris.png")
+            }
+            else {
+                image("")
+            },
+            // cant be asked to figure out how to include two module in one if statement (sorry)
+            if self.crab {
+                text("ferris jumpscare").size(100)
+            }
+            else {
+                text("")
+            }
         ]
         .padding(20)
         .align_items(Alignment::Center)
