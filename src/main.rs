@@ -51,7 +51,7 @@ impl Sandbox for Crypt {
                 self.value = match encode(&self.value) {
                     Ok(message) => message,
                     Err(err) => {
-                        self.error = err;
+                        self.error = err.to_string();
                         String::from("")
                     }
                 };
@@ -60,7 +60,7 @@ impl Sandbox for Crypt {
                 self.value = match decode(&self.value) {
                     Ok(message) => message,
                     Err(err) => {
-                        self.error = err;
+                        self.error = err.to_string();
                         String::from("")
                     }
                 };
@@ -80,13 +80,17 @@ impl Sandbox for Crypt {
                 button(text("Encode").horizontal_alignment(alignment::Horizontal::Center))
                     .width(Length::Fill)
                     .on_press(Message::Encode),
-                button(image(image::Handle::from_memory(include_bytes!("../ferris.png"))))
-                    .width(40)
-                    .on_press(Message::Crab),
+                button(image(image::Handle::from_memory(include_bytes!(
+                    "../ferris.png"
+                ))))
+                .width(40)
+                .on_press(Message::Crab),
             ],
             text(&self.error).style(Color::from([1.0, 0.0, 0.0])),
             if self.crab {
-                image(image::Handle::from_memory(include_bytes!("../cuddlyferris.png")))
+                image(image::Handle::from_memory(include_bytes!(
+                    "../cuddlyferris.png"
+                )))
             } else {
                 image("")
             },
